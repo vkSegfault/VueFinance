@@ -30,11 +30,14 @@
         <input type="text" id="newFinAsset" name="newFinAsset" v-model="newFinAsset" />
         <button type="submit">Submit</button>
     </form>
+
+    <p>HTTP GET:</p>
+    <p>{{ httpResponse }}</p>
 </template>
 
 // Composition API - implicit exporting
 <script setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 
 // using ref() allows reactive variables (we can modify them in methods)
 const title = 'Vue Finance Main Page';
@@ -43,6 +46,7 @@ const userStatus = ref('pending');  // active|pending|blocked
 const finAssets = ref(['Stock', 'Bond', 'Invest Fund']);
 const link = 'https://vksegfault.github.io';
 const newFinAsset = ref('...add');
+const httpResponse = ref('NOT CALLED');
 
 const toggleStatus = () => {
     if (userStatus.value === 'pending') {
@@ -64,6 +68,19 @@ const addFinAsset = () => {
 const deleteFinAsset = (index) => {
     finAssets.value.splice(index, 1);
 };
+
+// built-in wrapper methods (we put our custom methods inside - they will be executed based on the wrapper)
+// onMounted() for HTTP requests
+onMounted(async () => {
+    try {
+        const response = await fetch('https://jsonplaceholder.typicode.com/todos');
+        const data = await response.json();
+        httpResponse.value = data;
+    } catch (error) {
+        console.log('Error fetching GET request');
+        httpResponse.value = 'ERROR HTTP GET';
+    }
+})
 
 </script>
 
