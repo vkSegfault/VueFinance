@@ -10,7 +10,12 @@
 
     <h3>Finance assets:</h3>
     <ul>
-        <li v-for="asset in finAssets" :key="asset">{{ asset }}</li>
+        <li v-for="(asset, index) in finAssets" :key="asset">
+            <span>
+                {{ asset }}
+            </span>
+            <button @click="deleteFinAsset(index)">x</button>
+        </li>
     </ul>
 
     <a v-bind:href="link">Click for vkSegfault page</a>
@@ -54,6 +59,10 @@ const addFinAsset = () => {
         finAssets.value.push(newFinAsset.value);
         newFinAsset.value = '';
     }
+};
+
+const deleteFinAsset = (index) => {
+    finAssets.value.splice(index, 1);
 };
 
 </script>
