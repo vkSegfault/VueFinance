@@ -1,43 +1,9 @@
-<template>
-    <h1>Vue Finance</h1>
-    <h2>{{ title }}</h2>
-
-    <p v-if="userActive">User is active</p>
-    <p v-else>User is blocked</p>
-    
-    <p v-if="userStatus === 'active'">User status: {{ userStatus }}</p>
-    <p v-else-if="userStatus === 'pending'">User status: {{ userStatus }}</p>
-
-    <h3>Finance assets:</h3>
-    <ul>
-        <li v-for="(asset, index) in finAssets" :key="asset">
-            <span>
-                {{ asset }}
-            </span>
-            <button @click="deleteFinAsset(index)">x</button>
-        </li>
-    </ul>
-
-    <a v-bind:href="link">Click for vkSegfault page</a>
-    <br>
-    <a :href="link">Click for Google</a>
-    <br>
-
-    <button v-on:click="toggleStatus">Change Status</button>
-
-    <form @submit.prevent="addFinAsset">
-        <label for="newFinAsset">Add Finance Asset: </label>
-        <input type="text" id="newFinAsset" name="newFinAsset" v-model="newFinAsset" />
-        <button type="submit">Submit</button>
-    </form>
-
-    <p>HTTP GET:</p>
-    <p>{{ httpResponse }}</p>
-</template>
-
 // Composition API - implicit exporting
 <script setup>
 import { onMounted, ref } from 'vue';
+import Navbar from './components/Navbar.vue';
+import Title from './components/Title.vue'
+import AssetCard from './components/AssetCardList.vue'
 
 // using ref() allows reactive variables (we can modify them in methods)
 const title = 'Vue Finance Main Page';
@@ -83,6 +49,48 @@ onMounted(async () => {
 })
 
 </script>
+
+<template>
+    <Navbar />
+    <!-- we pass props (args) here to Title.vue component-->
+    <Title title="Best Vue Finance" subtitle='Manage all your money and assets with Vue Finance' />
+    <AssetCard />
+
+    <h1 class="text-3xl">Vue Finance</h1>
+    <h2>{{ title }}</h2>
+
+    <p v-if="userActive">User is active</p>
+    <p v-else>User is blocked</p>
+
+    <p v-if="userStatus === 'active'">User status: {{ userStatus }}</p>
+    <p v-else-if="userStatus === 'pending'">User status: {{ userStatus }}</p>
+
+    <h3>Finance assets:</h3>
+    <ul>
+        <li v-for="(asset, index) in finAssets" :key="asset">
+            <span>
+                {{ asset }}
+            </span>
+            <button @click="deleteFinAsset(index)">x</button>
+        </li>
+    </ul>
+
+    <a v-bind:href="link">Click for vkSegfault page</a>
+    <br>
+    <a :href="link">Click for Google</a>
+    <br>
+
+    <button v-on:click="toggleStatus">Change Status</button>
+
+    <form @submit.prevent="addFinAsset">
+        <label for="newFinAsset">Add Finance Asset: </label>
+        <input type="text" id="newFinAsset" name="newFinAsset" v-model="newFinAsset" />
+        <button type="submit">Submit</button>
+    </form>
+
+    <p>HTTP GET:</p>
+    <p>{{ httpResponse }}</p>
+</template>
 
 // Options API
 <!-- <script>
