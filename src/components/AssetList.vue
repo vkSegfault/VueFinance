@@ -1,7 +1,15 @@
 <script setup>
 import JobDataJson from '@/jobs.json'
-import { ref } from 'vue'
+import { ref, defineProps, computed } from 'vue'
 import Asset from './Asset.vue';
+
+defineProps({
+    limit: Number,
+    showButton: {
+        type: Boolean,
+        default: false
+    }
+})
 
 const jobsJson = ref(JobDataJson);
 // console.log(jobs.value);
@@ -15,10 +23,19 @@ const jobsJson = ref(JobDataJson);
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- .id and .title are from json keys we imported -->
-                <Asset v-for="job in jobsJson.jobs" :key="job.id" :job="job" >
+                <Asset v-for="job in jobsJson.jobs.slice(0, limit || jobsJson.jobs.length)" :key="job.id" :job="job" >
                     <!-- {{ job.title }} -->
                 </Asset>
             </div>
         </div>
     </section>
+
+    <section v-if="showButton" class="m-auto max-w-lg my-10 px-6">
+      <a
+        href="/jobs"
+        class="block bg-black text-white text-center py-4 px-6 rounded-xl hover:bg-gray-700"
+        >View All Jobs</a
+      >
+    </section>
+
 </template>

@@ -2,9 +2,8 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 import Navbar from './components/Navbar.vue';
-import Title from './components/Title.vue'
-import AssetCardList from './components/AssetCardList.vue'
-import AssetListing from './components/AssetListing.vue';
+import { RouterView } from 'vue-router';
+
 
 // using ref() allows reactive variables (we can modify them in methods)
 const title = 'Vue Finance Main Page';
@@ -53,10 +52,7 @@ onMounted(async () => {
 
 <template>
     <Navbar />
-    <!-- we pass props (args) here to Title.vue component-->
-    <Title title="Best Vue Finance" subtitle='Manage all your money and assets with Vue Finance' />
-    <AssetCardList />
-    <AssetListing />
+    <RouterView /> 
 
     <h1 class="text-3xl">Vue Finance</h1>
     <h2>{{ title }}</h2>
