@@ -3,7 +3,8 @@
 import { onMounted, ref } from 'vue';
 import Navbar from './components/Navbar.vue';
 import Title from './components/Title.vue'
-import AssetCard from './components/AssetCardList.vue'
+import AssetCardList from './components/AssetCardList.vue'
+import AssetListing from './components/AssetListing.vue';
 
 // using ref() allows reactive variables (we can modify them in methods)
 const title = 'Vue Finance Main Page';
@@ -54,7 +55,8 @@ onMounted(async () => {
     <Navbar />
     <!-- we pass props (args) here to Title.vue component-->
     <Title title="Best Vue Finance" subtitle='Manage all your money and assets with Vue Finance' />
-    <AssetCard />
+    <AssetCardList />
+    <AssetListing />
 
     <h1 class="text-3xl">Vue Finance</h1>
     <h2>{{ title }}</h2>
