@@ -52,7 +52,7 @@ onMounted(async () => {
 
 <template>
     <Navbar />
-    <RouterView /> 
+    <RouterView />
 
     <h1 class="text-3xl">Vue Finance</h1>
     <h2>{{ title }}</h2>
