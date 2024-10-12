@@ -13,15 +13,19 @@ defineProps({
     }
 })
 
+// const jobsJson = ref(JobDataJson);
+const jobsJson = ref([]);
+
 onMounted(async () => {
     try {
-        const response = await axios.get('http://localhost:');
+        const response = await axios.get('http://127.0.0.1:8000/assets');
+        console.log(response)
+        jobsJson.value = response.data;
     } catch (error) {
-        console.log(error);
+        console.error('Error fetching jobs', error);
     }
 });
-const jobsJson = ref(JobDataJson);
-// console.log(jobs.value);
+
 </script>
 
 <template>
@@ -32,7 +36,7 @@ const jobsJson = ref(JobDataJson);
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- .id and .title are from json keys we imported -->
-                <Asset v-for="job in jobsJson.jobs.slice(0, limit || jobsJson.jobs.length)" :key="job.id" :job="job" >
+                <Asset v-for="job in jobsJson.slice(0, limit || jobsJson.length)" :key="job.id" :job="job" >
                     <!-- {{ job.title }} -->
                 </Asset>
             </div>
