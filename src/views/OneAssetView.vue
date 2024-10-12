@@ -10,7 +10,7 @@
               class="bg-white p-6 rounded-lg shadow-md text-center md:text-left"
             >
               <div class="text-gray-500 mb-4">Full-Time</div>
-              <h1 class="text-3xl font-bold mb-4">Senior Vue Developer</h1>
+              <h1 class="text-3xl font-bold mb-4">Senior Vue Developer (offer no. {{ $route.params.id }})</h1>
               <div
                 class="text-gray-500 mb-4 flex align-middle justify-center md:justify-start"
               >
