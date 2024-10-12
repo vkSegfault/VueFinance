@@ -1,8 +1,9 @@
 <script setup>
 import JobDataJson from '@/jobs.json'
-import { ref, defineProps } from 'vue'
+import { ref, defineProps, onMounted } from 'vue'
 import Asset from './Asset.vue';
 import { RouterLink } from 'vue-router';
+import axios from 'axios';
 
 defineProps({
     limit: Number,
@@ -12,6 +13,13 @@ defineProps({
     }
 })
 
+onMounted(async () => {
+    try {
+        const response = await axios.get('http://localhost:');
+    } catch (error) {
+        console.log(error);
+    }
+});
 const jobsJson = ref(JobDataJson);
 // console.log(jobs.value);
 </script>
