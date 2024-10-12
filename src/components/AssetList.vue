@@ -1,9 +1,10 @@
 <script setup>
 import JobDataJson from '@/jobs.json'
-import { ref, defineProps, onMounted } from 'vue'
+import { ref, defineProps, onMounted, reactive } from 'vue'
 import Asset from './Asset.vue';
 import { RouterLink } from 'vue-router';
 import axios from 'axios';
+import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 
 defineProps({
     limit: Number,
@@ -14,15 +15,22 @@ defineProps({
 })
 
 // const jobsJson = ref(JobDataJson);
-const jobsJson = ref([]);
+// const jobsJson = ref([]);  // <-- most stick to this approach
+const state = reactive({
+    jobs: [],
+    isLoading: true
+});
 
 onMounted(async () => {
     try {
         const response = await axios.get('http://127.0.0.1:8000/assets');
         console.log(response)
-        jobsJson.value = response.data;
+        // jobsJson.value = response.data;
+        state.jobs = response.data;
     } catch (error) {
         console.error('Error fetching jobs', error);
+    } finally {
+        state.isLoading = false;
     }
 });
 
@@ -34,9 +42,16 @@ onMounted(async () => {
             <h2 class="text-3xl font-bold text-green-500 mb-6 text-center">
                 Browse Assets
             </h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+            <!-- Show loading spinner while state.isLoading is true -->
+            <div v-if="state.isLoading" class="text-center text-gray-500 py-6">
+                <PulseLoader />
+            </div>
+
+            <!-- Show job listing when done loading -->
+            <div v-else class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- .id and .title are from json keys we imported -->
-                <Asset v-for="job in jobsJson.slice(0, limit || jobsJson.length)" :key="job.id" :job="job" >
+                <Asset v-for="job in state.jobs.slice(0, limit || state.jobs.length)" :key="job.id" :job="job" >
                     <!-- {{ job.title }} -->
                 </Asset>
             </div>
