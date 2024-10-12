@@ -54,7 +54,7 @@ onMounted(async () => {
     <Navbar />
     <RouterView />
 
-    <h1 class="text-3xl">Vue Finance</h1>
+    <!-- <h1 class="text-3xl">Vue Finance</h1>
     <h2>{{ title }}</h2>
 
     <p v-if="userActive">User is active</p>
@@ -87,7 +87,7 @@ onMounted(async () => {
     </form>
 
     <p>HTTP GET:</p>
-    <p>{{ httpResponse }}</p>
+    <p>{{ httpResponse }}</p> -->
 </template>
 
 // Options API

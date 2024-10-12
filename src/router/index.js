@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "@/views/HomeView.vue";
-import AssetListView from "@/views/AssetListView.vue";
+import YourAssetsView from "@/views/YourAssetsView.vue";
 import NotFoundView from "@/views/NotFoundView.vue";
 import AssetView from "@/views/AssetView.vue";
 
@@ -16,7 +16,7 @@ const router = createRouter({
         {
             path: '/asset',
             name: 'asset',
-            component: AssetListView
+            component: YourAssetsView
         },
         {
             path: '/asset/:id',
