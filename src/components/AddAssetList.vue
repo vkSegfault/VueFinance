@@ -7,7 +7,7 @@ import AddAsset from '@/components/AddAsset.vue';
     <section class="py-4">
       <div class="container-xl lg:container m-auto">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 rounded-lg">
-          <AddAsset>
+          <AddAsset bg="bg-blue-100">
             <h2 class="text-2xl font-bold">Stock</h2>
             <p class="mt-2 mb-4">
               Add Stock from WSE (API should fetch current markings and update value)
