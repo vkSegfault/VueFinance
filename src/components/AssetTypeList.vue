@@ -1,13 +1,13 @@
 <script setup>
 import { RouterLink } from 'vue-router';
-import AddAsset from '@/components/AddAsset.vue';
+import AssetType from '@/components/AssetType.vue';
 </script>
 
 <template>
     <section class="py-4">
       <div class="container-xl lg:container m-auto">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 rounded-lg">
-          <AddAsset bg="bg-blue-100">
+          <AssetType bg="bg-blue-100">
             <h2 class="text-2xl font-bold">Stock</h2>
             <p class="mt-2 mb-4">
               Add Stock from WSE (API should fetch current markings and update value)
@@ -18,8 +18,8 @@ import AddAsset from '@/components/AddAsset.vue';
             >
               Add Stock
             </RouterLink>
-          </AddAsset>
-          <AddAsset bg="bg-green-100">
+          </AssetType>
+          <AssetType bg="bg-green-100">
             <h2 class="text-2xl font-bold">Bond</h2>
             <p class="mt-2 mb-4">
               Add Bond, interest rate (TAX vill be deduced automatically)
@@ -30,8 +30,8 @@ import AddAsset from '@/components/AddAsset.vue';
             >
               Add Bond
             </RouterLink>
-          </AddAsset>
-          <AddAsset bg="bg-red-100">
+          </AssetType>
+          <AssetType bg="bg-red-100">
             <h2 class="text-2xl font-bold">Mortgage</h2>
             <p class="mt-2 mb-4">
               Add Mortgage, whole credit value, capital paid off, capital left
@@ -42,7 +42,7 @@ import AddAsset from '@/components/AddAsset.vue';
             >
               Add Bond
             </RouterLink>
-          </AddAsset>
+          </AssetType>
         </div>
       </div>
     </section>
