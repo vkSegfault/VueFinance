@@ -59,7 +59,7 @@ const bgColor = ref('bg-white')
                 {{ asset.location }}
             </div>
             <RouterLink
-                :to="'/asset/' + asset.id"
+                :to="'/asset/' + asset.type + '/' + asset.id"
                 class="h-[36px] bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-center text-sm"
             >
                 Read More

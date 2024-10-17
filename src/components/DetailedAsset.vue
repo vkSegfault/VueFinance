@@ -13,7 +13,8 @@ const props = defineProps({
 const route = useRoute();
 
 const assetId = route.params.id;
-// console.log(route.params)
+const assetType = route.params.type.toLowerCase();
+console.log(route.params)
 
 const state = reactive({
   asset: {},
@@ -22,7 +23,7 @@ const state = reactive({
 
 onMounted(async () => {
     try {
-        const response = await axios.get(`http://127.0.0.1:8000/assets/${assetId}`);
+        const response = await axios.get(`http://127.0.0.1:8000/assets/${assetType}/${assetId}`);
         console.log(response)
         state.asset = response.data;
     } catch (error) {
@@ -42,8 +43,8 @@ onMounted(async () => {
             <div
               class="bg-white p-6 rounded-lg shadow-md text-center md:text-left"
             >
-              <div class="text-gray-500 mb-4">Full-Time</div>
-              <h1 class="text-3xl font-bold mb-4">Senior Vue Developer (offer no. {{ $route.params.id }})</h1>
+              <div class="text-gray-500 mb-4">{{ state.asset.type }}</div>
+              <h1 class="text-3xl font-bold mb-4">{{ state.asset.name }} (asset no. {{ $route.params.id }})</h1>
               <div
                 class="text-gray-500 mb-4 flex align-middle justify-center md:justify-start"
               >

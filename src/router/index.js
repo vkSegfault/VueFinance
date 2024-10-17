@@ -20,7 +20,7 @@ const router = createRouter({
             component: YourAssetsView
         },
         {
-            path: '/asset/:id',
+            path: '/asset/:type/:id',
             name: 'asset-id',
             component: OneAssetView,
         },
