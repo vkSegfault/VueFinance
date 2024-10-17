@@ -51,8 +51,10 @@ onMounted(async () => {
 </script>
 
 <template>
-    <Navbar />
-    <RouterView />
+    <nav class="bg-gradient-to-r from-gray-200 to-green-600 border-b border-green-500">
+        <Navbar />
+        <RouterView />
+    </nav>
 
     <!-- <h1 class="text-3xl">Vue Finance</h1>
     <h2>{{ title }}</h2>
