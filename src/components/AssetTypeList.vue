@@ -31,7 +31,7 @@ import AssetType from '@/components/AssetType.vue';
               Add Bond
             </RouterLink>
           </AssetType>
-          <AssetType bg="bg-yellow-100">
+          <AssetType bg="bg-lime-100">
             <h2 class="text-2xl font-bold">Deposit</h2>
             <p class="mt-2 mb-4">
               Add Deposit
@@ -53,6 +53,18 @@ import AssetType from '@/components/AssetType.vue';
               class="inline-block bg-green-500 text-white rounded-lg px-4 py-2 hover:bg-green-600"
             >
               Add IKE
+            </RouterLink>
+          </AssetType>
+          <AssetType bg="bg-teal-100">
+            <h2 class="text-2xl font-bold">PPK</h2>
+            <p class="mt-2 mb-4">
+              Add money to Pracowniczy Plan Kapitałowy
+            </p>
+            <RouterLink
+              to="/asset/add"
+              class="inline-block bg-green-500 text-white rounded-lg px-4 py-2 hover:bg-green-600"
+            >
+              Add PPK
             </RouterLink>
           </AssetType>
         </div>
