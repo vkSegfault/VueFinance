@@ -50,8 +50,8 @@ onMounted(async () => {
 
             <!-- Show asset listing when done loading -->
             <div v-else class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- .id and .title are from json keys we imported -->
-                <Asset v-for="asset in state.assets.slice(0, limit || state.assets.length)" :key="asset.id" :asset="asset" >
+                <!-- "asset" is prop from Asset.vue -->
+                <Asset v-for="asset in state.assets.slice(0, limit || state.assets.length)" :key="asset.id" :asset="asset" >  
                     <!-- {{ job.title }} -->
                 </Asset>
             </div>

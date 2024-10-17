@@ -4,9 +4,16 @@ import { reactive, onMounted } from 'vue';
 import { useRoute, RouterLink } from 'vue-router';
 import axios from 'axios';
 
+// the problem here is that we execute this component via Router Link/View only so we can't pass whole object as prop
+// we only get id from route which is part of url
+const props = defineProps({
+    asset: Object
+});
+
 const route = useRoute();
 
 const assetId = route.params.id;
+// console.log(route.params)
 
 const state = reactive({
   asset: {},
