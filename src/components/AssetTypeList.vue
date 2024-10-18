@@ -13,7 +13,7 @@ import AssetType from '@/components/AssetType.vue';
               Add Stock from WSE (API should fetch current markings and update value)
             </p>
             <RouterLink
-              to="/asset/add"
+              to="/asset/add/stock"
               class="inline-block bg-black text-white rounded-lg px-4 py-2 hover:bg-gray-700"
             >
               Add Stock
@@ -25,7 +25,7 @@ import AssetType from '@/components/AssetType.vue';
               Add Bond, interest rate (TAX vill be deduced automatically)
             </p>
             <RouterLink
-              to="/asset/add"
+              to="/asset/add/bond"
               class="inline-block bg-green-500 text-white rounded-lg px-4 py-2 hover:bg-green-600"
             >
               Add Bond

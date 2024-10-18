@@ -16,7 +16,7 @@ const router = createRouter({
         },
         {
             path: '/assets',
-            name: 'asset',
+            name: 'assets',
             component: YourAssetsView
         },
         {
@@ -28,7 +28,22 @@ const router = createRouter({
             path: '/asset/add',
             name: 'asset-add',
             component: AddAssetView,
+            children: [
+                {
+                    path: '',
+                    component: AddAssetView
+                },
+                {
+                    path: ':type',
+                    component: AddAssetView
+                }
+            ]
         },
+        // {
+        //     path: '/asset/add/:type',
+        //     name: 'asset-add',
+        //     component: AddAssetView,
+        // },
         {
             path: '/:catchAll(.*)',
             name: 'not-found',
