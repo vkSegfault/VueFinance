@@ -30,8 +30,8 @@
                   >Home</RouterLink
                 >
                 <RouterLink
-                  to="/asset"
-                  :class="[isActiveLink('/asset') ? 'bg-green-900' : 'hover:bg-green-800 hover:text-white', 'text-white', 'px-3', 'py-2', 'rounded-md']"
+                  to="/assets"
+                  :class="[isActiveLink('/assets') ? 'bg-green-900' : 'hover:bg-green-800 hover:text-white', 'text-white', 'px-3', 'py-2', 'rounded-md']"
                   >Your Assets</RouterLink
                 >
                 <RouterLink

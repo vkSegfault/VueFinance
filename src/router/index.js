@@ -15,7 +15,7 @@ const router = createRouter({
             component: HomeView,
         },
         {
-            path: '/asset',
+            path: '/assets',
             name: 'asset',
             component: YourAssetsView
         },

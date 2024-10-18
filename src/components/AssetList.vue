@@ -23,7 +23,7 @@ const state = reactive({
 
 onMounted(async () => {
     try {
-        const response = await axios.get('http://127.0.0.1:8000/assets');
+        const response = await axios.get('/proxy/assets');
         console.log(response)
         // jobsJson.value = response.data;
         state.assets = response.data;

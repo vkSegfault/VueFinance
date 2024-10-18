@@ -3,6 +3,7 @@ import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
 import { reactive, onMounted } from 'vue';
 import { useRoute, RouterLink } from 'vue-router';
 import axios from 'axios';
+import BackButton from './BackButton.vue';
 
 // the problem here is that we execute this component via Router Link/View only so we can't pass whole object as prop
 // we only get id from route which is part of url
@@ -14,7 +15,7 @@ const route = useRoute();
 
 const assetId = route.params.id;
 const assetType = route.params.type.toLowerCase();
-console.log(route.params)
+// console.log(route.params)
 
 const state = reactive({
   asset: {},
@@ -23,7 +24,7 @@ const state = reactive({
 
 onMounted(async () => {
     try {
-        const response = await axios.get(`http://127.0.0.1:8000/assets/${assetType}/${assetId}`);
+        const response = await axios.get(`/proxy/assets/${assetType}/${assetId}`);
         console.log(response)
         state.asset = response.data;
     } catch (error) {
@@ -36,8 +37,19 @@ onMounted(async () => {
 </script>
 
 <template>
+    <BackButton />
     <section class="bg-green-50">
-      <div class="container m-auto py-10 px-6">
+
+      <!-- Show loading spinner while state.isLoading is true -->
+      <div v-if="state.isLoading" class="text-center text-gray-500 py-6">
+        <h2 class="text-3xl font-bold text-green-500 mb-6 text-center">
+          Loading asset...
+        </h2>
+        <PulseLoader />
+      </div>
+
+      <!-- show detailed view whne loading is done -->
+      <div v-else class="container m-auto py-10 px-6">
         <div class="grid grid-cols-1 md:grid-cols-70/30 w-full gap-6">
           <main>
             <div
