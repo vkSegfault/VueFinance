@@ -1,18 +1,52 @@
 <script setup>
 import { RouterLink, useRoute  } from 'vue-router';
 import { reactive } from 'vue';
+import router from '@/router';
+import axios from 'axios';
 
 const route = useRoute()
 const type = route.params.type ? route.params.type.toLowerCase() : ''
 const stringType = type.charAt(0).toUpperCase() + type.slice(1);
 // console.log(route.params)
 
+
+// eveything from submit form will be coppied to below object
 const form = reactive({
   // default type here - when we click add new particular type it should already be picked up and not provided once more
   type: stringType,
   name: '',
-  description: ''
+  description: '',
+  value: 0,
+  rate: 0,
+  days: 0,
+  tax: 0
 })
+
+const handleSubmit = async () => {
+  console.log('submit pressed')
+  console.log( form.description )
+  const newBond = {
+    name: form.name,
+    type: form.type.toUpperCase(),
+    description: form.description,
+    value: form.value,
+    rate: form.rate,
+    days: form.days,
+    tax: form.tax
+  };
+
+  try {
+    console.log( form.type.toUpperCase() )
+    console.log( newBond )
+    const response = await axios.post(`/proxy/assets/${form.type.toLowerCase()}`, newBond);
+    console.log(response)
+    router.push(`/asset/${form.type.toLowerCase()}/${response.data.id}`)
+    state.assets = response.data;
+  } catch (error) {
+    console.error('Error submitting assets', error);
+  }
+
+};
 </script>
 
 <template>
@@ -32,13 +66,14 @@ const form = reactive({
         <div
           class="bg-white px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0"
         >
-          <form>
+          <form @submit.prevent="handleSubmit">
             <h2 class="text-3xl text-center font-semibold mb-6">Add Asset</h2>
 
             <div class="mb-4">
               <label for="type" class="block text-gray-700 font-bold mb-2"
                 >Asset Type</label
               >
+              <!-- v-model binds form variable defined in <script /> with whataver value user pass to this form from website -->
               <select
                 v-model="form.type"
                 id="type"

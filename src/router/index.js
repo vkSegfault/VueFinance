@@ -39,11 +39,6 @@ const router = createRouter({
                 }
             ]
         },
-        // {
-        //     path: '/asset/add/:type',
-        //     name: 'asset-add',
-        //     component: AddAssetView,
-        // },
         {
             path: '/:catchAll(.*)',
             name: 'not-found',
