@@ -3,9 +3,10 @@ import { RouterLink, useRoute  } from 'vue-router';
 import { reactive } from 'vue';
 import router from '@/router';
 import axios from 'axios';
+import { useToast } from 'vue-toastification';
 
 const route = useRoute()
-const type = route.params.type ? route.params.type.toLowerCase() : ''
+const type = route.params.type ? route.params.type.toLowerCase() : '';
 const stringType = type.charAt(0).toUpperCase() + type.slice(1);
 // console.log(route.params)
 
@@ -20,11 +21,13 @@ const form = reactive({
   rate: 0,
   days: 0,
   tax: 0
-})
+});
+
+const toast = useToast();
 
 const handleSubmit = async () => {
-  console.log('submit pressed')
-  console.log( form.description )
+  // console.log('submit pressed')
+  // console.log( form.description )
   const newBond = {
     name: form.name,
     type: form.type.toUpperCase(),
@@ -36,14 +39,15 @@ const handleSubmit = async () => {
   };
 
   try {
-    console.log( form.type.toUpperCase() )
-    console.log( newBond )
+    // console.log( form.type.toUpperCase() )
+    // console.log( newBond )
     const response = await axios.post(`/proxy/assets/${form.type.toLowerCase()}`, newBond);
-    console.log(response)
-    router.push(`/asset/${form.type.toLowerCase()}/${response.data.id}`)
-    state.assets = response.data;
+    // console.log(response)
+    toast.success('Asset Added Successfully');
+    router.push(`/asset/${form.type.toLowerCase()}/${response.data.id}`);
   } catch (error) {
-    console.error('Error submitting assets', error);
+    console.error('Error submitting assets:', error);
+    toast.error('Assed Not Added');
   }
 
 };

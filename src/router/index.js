@@ -31,10 +31,12 @@ const router = createRouter({
             children: [
                 {
                     path: '',
+                    name: 'asset-add-generic',
                     component: AddAssetView
                 },
                 {
                     path: ':type',
+                    name: 'asset-add-particular',
                     component: AddAssetView
                 }
             ]
