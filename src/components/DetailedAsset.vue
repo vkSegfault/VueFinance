@@ -1,9 +1,10 @@
 <script setup>
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
 import { reactive, onMounted } from 'vue';
-import { useRoute, RouterLink } from 'vue-router';
+import { useRoute, RouterLink, useRouter } from 'vue-router';
 import axios from 'axios';
 import BackButton from './BackButton.vue';
+import { useToast } from 'vue-toastification';
 
 // the problem here is that we execute this component via Router Link/View only so we can't pass whole object as prop
 // we only get id from route which is part of url
@@ -12,6 +13,8 @@ const props = defineProps({
 });
 
 const route = useRoute();
+const router = useRouter();
+const toast = useToast();
 
 const assetId = route.params.id;
 const assetType = route.params.type.toLowerCase();
@@ -21,6 +24,21 @@ const state = reactive({
   asset: {},
   isLoading: true
 })
+
+const deleteAsset = async () => {
+  try {
+    const confirm = window.confirm('Do you want to delete this asset?');
+    if (confirm) {
+      await axios.delete(`/proxy/assets/${assetType}/${assetId}`);
+      toast.success('Asset Deleted Successfully');
+      router.push('/assets');
+    }
+  } catch(error) {
+    console.log(`/proxy/${assetType}/${assetId}`);
+    console.error('Error Deleting Asset: ', error);
+    toast.error('Asset Not Deleted');
+  }
+}
 
 onMounted(async () => {
     try {
@@ -121,7 +139,7 @@ onMounted(async () => {
                 class="bg-green-500 hover:bg-green-600 text-white text-center font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
                 >Edit Job</a
               >
-              <button
+              <button @click="deleteAsset"
                 class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
               >
                 Delete Job
