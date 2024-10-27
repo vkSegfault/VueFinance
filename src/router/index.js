@@ -4,6 +4,7 @@ import YourAssetsView from "@/views/YourAssetsView.vue";
 import NotFoundView from "@/views/NotFoundView.vue";
 import OneAssetView from "@/views/OneAssetView.vue";
 import AddAssetView from "@/views/AddAssetView.vue";
+import EditAssetView from "@/views/EditAssetView.vue";
 
 const router = createRouter({
     // we can use back button with history
@@ -40,6 +41,11 @@ const router = createRouter({
                     component: AddAssetView
                 }
             ]
+        },
+        {
+            path: '/asset/edit/:type/:id',
+            name: 'asset-edit',
+            component: EditAssetView,
         },
         {
             path: '/:catchAll(.*)',

@@ -43,7 +43,7 @@ const deleteAsset = async () => {
 onMounted(async () => {
     try {
         const response = await axios.get(`/proxy/assets/${assetType}/${assetId}`);
-        console.log(response)
+        // console.log(response)
         state.asset = response.data;
     } catch (error) {
         console.error('Error fetching assets', error);
@@ -134,15 +134,23 @@ onMounted(async () => {
             <!-- Manage -->
             <div class="bg-white p-6 rounded-lg shadow-md mt-6">
               <h3 class="text-xl font-bold mb-6">Manage Job</h3>
-              <a
+              <!-- <a
                 href="add-job.html"
                 class="bg-green-500 hover:bg-green-600 text-white text-center font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
-                >Edit Job</a
+                >Edit Asset</a
+              > -->
+
+              <RouterLink
+                :to="'/asset/edit/' + assetType + '/' + assetId"
+                class="bg-green-500 hover:bg-green-600 text-white text-center font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
               >
+                Edit Asset
+              </RouterLink>
+
               <button @click="deleteAsset"
                 class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
               >
-                Delete Job
+                Delete Asset
               </button>
             </div>
           </aside>
