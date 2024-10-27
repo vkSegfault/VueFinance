@@ -1,12 +1,12 @@
 <script setup>
-import JobDataJson from '@/jobs.json'
 import { ref, defineProps, onMounted, reactive } from 'vue'
 import Asset from './Asset.vue';
 import { RouterLink } from 'vue-router';
 import axios from 'axios';
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 
-defineProps({
+
+const props = defineProps({
     limit: Number,
     showButton: {
         type: Boolean,
@@ -18,14 +18,15 @@ defineProps({
 // const jobsJson = ref([]);  // <-- most stick to this approach
 const state = reactive({
     assets: [],
-    isLoading: true
+    isLoading: true,
+    limit: props.limit,
+    showButton: props.showButton
 });
 
 onMounted(async () => {
     try {
         const response = await axios.get('/proxy/assets');
-        console.log(response)
-        // jobsJson.value = response.data;
+        // console.log(response)
         state.assets = response.data;
     } catch (error) {
         console.error('Error fetching assets', error);
@@ -33,6 +34,12 @@ onMounted(async () => {
         state.isLoading = false;
     }
 });
+
+
+const viewAllAssets = async () => {
+    state.limit = 100
+    state.showButton = false
+}
 
 </script>
 
@@ -51,19 +58,23 @@ onMounted(async () => {
             <!-- Show asset listing when done loading -->
             <div v-else class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- "asset" is prop from Asset.vue -->
-                <Asset v-for="asset in state.assets.slice(0, limit || state.assets.length)" :key="asset.id" :asset="asset" >  
+                <Asset v-for="asset in state.assets.slice(0, state.limit || state.assets.length)" :key="asset.id" :asset="asset" >  
                     <!-- {{ job.title }} -->
                 </Asset>
             </div>
         </div>
     </section>
 
-    <section v-if="showButton" class="m-auto max-w-lg my-10 px-6">
-      <RouterLink
-        to="/asset"
+    <section v-if="state.showButton">
+        <button @click="viewAllAssets"
+            class="m-auto min-w-80 max-w-lg my-10 px-6 block bg-black text-white text-center py-4 px-6 rounded-xl hover:bg-gray-700"
+            >View All Assets
+        </button>
+      <!-- <RouterLink
+        to="/assets"
         class="block bg-black text-white text-center py-4 px-6 rounded-xl hover:bg-gray-700"
         >View All Assets</RouterLink
-      >
+      > -->
     </section>
 
 </template>

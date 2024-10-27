@@ -5,6 +5,7 @@ import router from '@/router';
 import axios from 'axios';
 import { useToast } from 'vue-toastification';
 import Calendar from 'primevue/calendar';
+import DatePicker from 'primevue/datepicker';
 
 
 const route = useRoute()
@@ -46,6 +47,7 @@ const handleSubmit = async () => {
     // console.log( newBond )
     const response = await axios.post(`/proxy/assets/${form.type.toLowerCase()}`, newBond);
     // console.log(response)
+    console.log( `${form.dateRange}` );
     toast.success('Asset Added Successfully');
     router.push(`/asset/${form.type.toLowerCase()}/${response.data.id}`);
   } catch (error) {
@@ -132,12 +134,12 @@ const handleSubmit = async () => {
               <label class="block text-gray-700 font-bold mb-2"
                 >Asset Valid Date Range</label
               >
-              <Calendar v-model="date"
+              <DatePicker v-model="form.dateRange"
                 type="text"
-                id="name"
-                name="name"
+                id="date"
+                name="date"
                 class="border rounded w-full py-2 px-3 mb-2"
-                placeholder="eg. My 2nd deposit"
+                placeholder="Date range of asset validity"
                 required
               />
             </div>
