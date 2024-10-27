@@ -4,6 +4,8 @@ import { reactive } from 'vue';
 import router from '@/router';
 import axios from 'axios';
 import { useToast } from 'vue-toastification';
+import Calendar from 'primevue/calendar';
+
 
 const route = useRoute()
 const type = route.params.type ? route.params.type.toLowerCase() : '';
@@ -17,6 +19,7 @@ const form = reactive({
   type: stringType,
   name: '',
   description: '',
+  dateRange: null,
   value: 0,
   rate: 0,
   days: 0,
@@ -125,7 +128,19 @@ const handleSubmit = async () => {
                 placeholder="Deposit for 10k PLN, saving for new car, please "
               ></textarea>
             </div>
-
+            <div class="mb-4">
+              <label class="block text-gray-700 font-bold mb-2"
+                >Asset Valid Date Range</label
+              >
+              <Calendar v-model="date"
+                type="text"
+                id="name"
+                name="name"
+                class="border rounded w-full py-2 px-3 mb-2"
+                placeholder="eg. My 2nd deposit"
+                required
+              />
+            </div>
             <div class="mb-4">
               <label for="type" class="block text-gray-700 font-bold mb-2"
                 >Salary</label
