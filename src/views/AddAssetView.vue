@@ -60,7 +60,7 @@ const handleSubmit = async () => {
 
 <template>
     <section class="text-center flex flex-col justify-center items-center h-96">
-      <i class="pi pi-file-plus text-yellow-500 text-7xl mb-5"></i>
+      <i class="pi pi-file-plus text-yellow-500 text-7xl mb-5" style="font-size: 5rem"></i>
       <h1 class="text-6xl font-bold mb-4">Add here new asset...</h1>
       <p class="text-xl mb-5">Plase add your asset</p>
       <RouterLink
@@ -115,6 +115,7 @@ const handleSubmit = async () => {
                 required
               />
             </div>
+
             <div class="mb-4">
               <label
                 for="description"
@@ -130,19 +131,27 @@ const handleSubmit = async () => {
                 placeholder="Deposit for 10k PLN, saving for new car, please "
               ></textarea>
             </div>
+
             <div class="mb-4">
               <label class="block text-gray-700 font-bold mb-2"
                 >Asset Valid Date Range</label
               >
-              <DatePicker v-model="form.dateRange"
-                type="text"
-                id="date"
-                name="date"
-                class="border rounded w-full py-2 px-3 mb-2"
-                placeholder="Date range of asset validity"
-                required
-              />
+              <div class="flex justify-content-center flex-wrap">
+                <div class="flex align-items-center justify-content-center w-4rem h-4rem bg-primary font-bold border-round m-2">
+                  <DatePicker v-model=form.dateRange buttondisplay showIcon :showOnFocus="true"
+                    type="text"
+                    id="date"
+                    name="date"
+                    class="border rounded w-2/3 py-2 px-3 mb-2"
+                    placeholder="10/23/2024"
+                  />
+                </div>
+                <!-- <div class="flex align-items-center justify-content-center w-4rem h-4rem bg-primary font-bold border-round m-2"> 2 </div>
+                <div class="flex align-items-center justify-content-center w-4rem h-4rem bg-primary font-bold border-round m-2"> 3 </div>
+                <div class="flex align-items-center justify-content-center w-4rem h-4rem bg-primary font-bold border-round m-2"> 4 </div> -->
+              </div>
             </div>
+            
             <div class="mb-4">
               <label for="type" class="block text-gray-700 font-bold mb-2"
                 >Salary</label
