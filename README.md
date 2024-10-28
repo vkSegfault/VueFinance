@@ -1,6 +1,11 @@
 # vuefinance
 
-This template should help get you started developing with Vue 3 in Vite.
+![image](https://github.com/user-attachments/assets/94b6decc-1d49-473d-b23c-f3546bbf23e3)
+![image](https://github.com/user-attachments/assets/92324042-4d6e-4164-9e5c-fa1de963ca10)
+![image](https://github.com/user-attachments/assets/17f31796-f1ec-4b8d-bd08-f8a1a83ecfdf)
+![image](https://github.com/user-attachments/assets/89236550-bb50-4c13-93d6-af9e6e50a218)
+
+
 
 ## Recommended IDE Setup
 
